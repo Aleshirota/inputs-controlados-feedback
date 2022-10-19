@@ -22,17 +22,41 @@ const onChangeEmail = (event) => {
 }
 
 const sendData = () => {
-  //aqui deve vir uma verificação para mudar de formulario apenas se todos os requisitos tiverem sido cumpridos
+
+  if(name.length > 10 && name.length < 30 && age >=18 && email.includes("@")){
+
+    //aqui deve vir uma verificação para mudar de formulario apenas se todos os requisitos tiverem sido cumpridos
   setFormFlow(2)
+
+  }else{
+    alert("não preenche os requisitos")
+  }
+
+  
 }
+
+
+
   return (
     <MainContainer>
       <h2>Formulário de inscrição</h2>
-      {formFlow === 1 ? <NameForm
+      {formFlow === 1 ? (<NameForm 
+      nameProps={name}
+      ageProps={age}
+      emailProps={email}
+      onChangeName={onChangeName}
+      onChangeAge={onChangeAge}
+      onChangeEmail={onChangeEmail}
+      sendDataProps={sendData}
+
+
       // insira aqui suas props
-      /> : <ConfirmationForm />}
+/>
+    )   : (<ConfirmationForm />
+  
+  )}
     </MainContainer>
-  )
-}
+  );
+};
 
 export default MainPage
